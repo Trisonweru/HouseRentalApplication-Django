@@ -1,0 +1,77 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Accomodation</title>
+    <link rel="stylesheet"  type="text/css" href="{% static 'css/style.css' %}" />
+    
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+</head>
+
+<body>
+    <header>
+        <nav>
+            <h1>Logo</h1>
+            <div>
+                <a href="/">Home</a>
+                <a href="/advert/ads">Ads</a>
+                <a href="/">User</a>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div class="search-bar">
+            <h2>Easiest way to Rent a home</h2>
+            <div>
+                <input type="search" name="search" id="search" placeholder="Enter location">
+                <i class="fas fa-search"></i>
+            </div>
+        </div>
+        <hr>
+
+        <div class="filter-bar">
+            <h2>Filter By: (Rent/Date)</h2>
+            <input type="range" name="range" id="range">
+            <input type="date" name="date" id="date">
+        </div>
+
+        <div>
+            <p>{{adverts.count}} Results</p>
+           
+            <div class="results">
+                 {% for item in adverts%}
+                <div class="result">
+                    <figure>
+                        <img src="/media/{{item.image}}" alt="hostel 1">
+                    </figure>
+                    <div class="details">
+                        <h3><span>${{item.rent}}</span> | Deposit: 2 months</h3>
+                        <h4>1 room - 225 sq. ft</h4>
+                        <p class="sub-title">Description:</p>
+                        <p>{{item.description}}</p>
+                    </div>
+
+                    <div class="action">
+                        <a href="advert/individual_advert/{{item.id}}"><button>Equiry</button></a>
+                        <a href="book/book_visit/{{item.id}}"><button>Book Visit</button></a>
+                    </div>
+                </div>
+
+            {%endfor%}
+
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2021</p>
+    </footer>
+   
+</script>
+</body>
+
+</html>

@@ -1,0 +1,72 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student Accomodation</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'css/style.css' %}"
+    />
+    <link
+      rel="stylesheet"
+      href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+      integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
+      crossorigin="anonymous"
+    />
+  </head>
+
+  <body>
+    <header>
+      <nav>
+        <h1>Logo</h1>
+        <div>
+          <a href="/">Home</a>
+          <a href="/advert/ads">Ads</a>
+          <a href="/">User</a>
+        </div>
+      </nav>
+    </header>
+
+    <div class="container">
+      <h3>Review Requests</h3>
+      <table>
+        <thead>
+          <th>Application No.</th>
+          <th>Owner</th>
+          <th>Details</th>
+          <th>Action</th>
+        </thead>
+
+        <tbody>
+          {% for add in adverts%}
+          <tr>
+            <td>{{add.id}}</td>
+            <td>{{add.manager.email}}</td>
+            <td>
+              <a href="advert/individual_advert/{{add.id}}"
+                ><button>View</button></a
+              >
+            </td>
+            <td>
+              <a href="advert/approve/{{add.id}}"><button>Approve</button></a>
+              <a href="advert/reject/{{add.id}}"><button>Reject</button></a>
+            </td>
+          </tr>
+          {%endfor%}
+        </tbody>
+      </table>
+
+      <div class="f-right">
+        <a href="advert/report"><button>Reports</button></a>
+        <a href="advert/print"><button>Print</button></a>
+      </div>
+    </div>
+
+    <footer>
+      <p>&copy; 2021</p>
+    </footer>
+  </body>
+</html>

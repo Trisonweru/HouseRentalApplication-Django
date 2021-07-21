@@ -1,0 +1,69 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student Accomodation</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'css/style.css' %}"
+    />
+    <link
+      rel="stylesheet"
+      href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+      integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
+      crossorigin="anonymous"
+    />
+  </head>
+
+  <body>
+    <header>
+      <nav>
+        <h1>Logo</h1>
+        <div>
+          <a href="/">Home</a>
+          <a href="/advert/ads">Ads</a>
+          <a href="/">User</a>
+          <a href="/">Chats</a>
+        </div>
+      </nav>
+    </header>
+
+    <div class="container">
+      {% if messages %} {% for messsage in messages %}
+      <div class="message">{{messsage}}</div>
+      {% endfor %} {% endif %}
+      <h1 style="text-align: center; margin-top: 20px">Chat with Client</h1>
+      {% for item in questions %}
+      <form
+        action="/chat/ans/{{item.id}}"
+        class="form fm-center"
+        id="form"
+        method="POST"
+        enctype="multipart/form-data"
+      >
+        {% csrf_token %}
+
+        <div class="form-control">
+          <h4>ADVERT ID: {{item.advert_id}}</h4>
+          <label for="rent">Question: {{item.question}}</label>
+          <textarea name="ans" id="desc" cols="45" rows="5"></textarea>
+          <i class="fas fa-check-circle"></i>
+          <i class="fas fa-exclamation-circle"></i>
+          <small></small>
+        </div>
+
+        <div class="form-control">
+          <button type="submit">Submit</button>
+        </div>
+      </form>
+      {% endfor %}
+    </div>
+
+    <footer>
+      <p>&copy; 2021</p>
+    </footer>
+  </body>
+</html>
